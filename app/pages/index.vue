@@ -10,13 +10,6 @@ useHead({
     { name: 'twitter:title', content: 'Beamback — Ship Features, Not Feedback Forms' },
     { name: 'twitter:description', content: 'Open-source feedback widget for your MVP. One script tag gives you a widget, public voting board, and roadmap. Set up in 2 minutes.' },
   ],
-  script: [
-    {
-      src: 'https://beamback.whoisarjen.com/widget.js',
-      'data-api-key': 'ak_l2_2KGeUWBGZmuLnUBGfq',
-      defer: true,
-    },
-  ],
 })
 </script>
 
