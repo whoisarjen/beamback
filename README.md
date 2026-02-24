@@ -26,8 +26,7 @@ Open-source feedback collection for your MVP. One script tag gives you a feedbac
 
 ```bash
 npm install
-cp .env.example .env  # fill in your credentials
-npx prisma generate
+vercel env pull .env.local   # pull env from Vercel
 npx prisma db push
 npm run dev
 ```
