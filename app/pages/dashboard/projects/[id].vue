@@ -338,10 +338,7 @@ const boardUrl = computed(() => {
         <div class="bg-glass-bg backdrop-blur-xl border border-glass-border rounded-2xl p-6">
           <h3 class="text-base font-semibold text-cosmo-text mb-2">Embed Code</h3>
           <p class="text-sm text-cosmo-text-muted mb-4">Add this snippet to your website to show the feedback widget.</p>
-          <DashboardWidgetCodeSnippet
-            :api-key="project.apiKey"
-            :app-url="config.public.appUrl"
-          />
+          <DashboardWidgetCodeSnippet :api-key="project.apiKey" />
         </div>
 
         <!-- API Key -->

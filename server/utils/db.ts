@@ -5,7 +5,8 @@ let prisma: PrismaClient
 
 function getPrismaClient(): PrismaClient {
   if (!prisma) {
-    const connectionString = process.env.NUXT_DATABASE_URL
+    const config = useRuntimeConfig()
+    const connectionString = config.databaseUrl || process.env.NUXT_DATABASE_URL
     if (!connectionString) {
       throw new Error('NUXT_DATABASE_URL environment variable is not set')
     }

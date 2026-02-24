@@ -24,6 +24,9 @@ logs
 # Prisma generated client (legacy output dir)
 server/generated
 
+# Test files
+test-widget.html
+
 # Local env files
 .env
 .env.*

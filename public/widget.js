@@ -9,7 +9,10 @@
   var position = script.getAttribute("data-position") || "bottom-right";
   var color = script.getAttribute("data-color") || "#3A82FF";
   var buttonText = script.getAttribute("data-button-text") || "Feedback";
-  var appUrl = "https://beamback.whoisarjen.com";
+
+  // Derive app URL from script src so it works in local dev and production
+  var scriptSrc = script.getAttribute("src") || "";
+  var appUrl = scriptSrc.replace(/\/widget\.js.*$/, "") || "https://beamback.whoisarjen.com";
 
   if (!apiKey) {
     console.warn("[Beamback] Missing data-api-key attribute on script tag.");

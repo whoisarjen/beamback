@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const props = defineProps<{
   apiKey: string
-  appUrl?: string
 }>()
 
+const config = useRuntimeConfig()
 const copied = ref(false)
 
 const snippetCode = computed(() => {
-  const baseUrl = props.appUrl || 'https://beamback.whoisarjen.com'
+  const baseUrl = config.public.appUrl || 'https://beamback.whoisarjen.com'
   return `<script src="${baseUrl}/widget.js" data-api-key="${props.apiKey}" defer><\/script>`
 })
 

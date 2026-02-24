@@ -94,10 +94,7 @@ onMounted(() => {
             <Icon name="lucide:x" class="w-4 h-4" />
           </button>
         </div>
-        <DashboardWidgetCodeSnippet
-          :api-key="createdProject.apiKey"
-          :app-url="config.public.appUrl"
-        />
+        <DashboardWidgetCodeSnippet :api-key="createdProject.apiKey" />
         <div class="mt-4 flex justify-end">
           <NuxtLink
             :to="`/dashboard/projects/${createdProject.id}`"
