@@ -48,7 +48,7 @@ async function handleSubmit() {
         :disabled="status === 'loading'"
         class="px-5 py-2.5 bg-cosmo-blue text-white text-sm font-medium rounded-lg hover:bg-cosmo-blue-bright transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-cosmo-blue shrink-0"
       >
-        <LoadingSpinner v-if="status === 'loading'" size="sm" />
+        <SharedLoadingSpinner v-if="status === 'loading'" size="sm" />
         <span v-else>Join Waitlist</span>
       </button>
     </form>

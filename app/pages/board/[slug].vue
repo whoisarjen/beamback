@@ -208,7 +208,7 @@ await fetchFeedback(true)
             class="bg-cosmo-surface border border-cosmo-border text-cosmo-text-muted hover:text-cosmo-text hover:border-cosmo-border-bright rounded-lg px-6 py-2.5 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-cosmo-blue disabled:opacity-50 flex items-center gap-2"
             @click="loadMore"
           >
-            <LoadingSpinner v-if="feedbackLoading" size="sm" />
+            <SharedLoadingSpinner v-if="feedbackLoading" size="sm" />
             {{ feedbackLoading ? 'Loading...' : 'Load more' }}
           </button>
         </div>
@@ -224,7 +224,7 @@ await fetchFeedback(true)
       </div>
 
       <div v-if="feedbackLoading && !feedbackItems.length" class="flex justify-center py-16">
-        <LoadingSpinner size="lg" />
+        <SharedLoadingSpinner size="lg" />
       </div>
     </div>
 

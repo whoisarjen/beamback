@@ -1,4 +1,9 @@
 import tailwindcss from '@tailwindcss/vite'
+import dotenv from 'dotenv'
+
+// Load .env.local first (Vercel convention), then .env as fallback
+dotenv.config({ path: '.env.local' })
+dotenv.config({ path: '.env' })
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',

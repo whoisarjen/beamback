@@ -170,7 +170,7 @@ async function handleSubmit() {
           :disabled="loading || !title.trim()"
           class="bg-cosmo-blue text-white rounded-lg px-4 py-2 hover:bg-cosmo-blue-bright transition-colors font-medium text-sm focus:outline-none focus:ring-2 focus:ring-cosmo-blue focus:ring-offset-2 focus:ring-offset-cosmo-bg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
         >
-          <LoadingSpinner v-if="loading" size="sm" />
+          <SharedLoadingSpinner v-if="loading" size="sm" />
           {{ loading ? 'Submitting...' : 'Submit Feedback' }}
         </button>
       </form>

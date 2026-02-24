@@ -77,7 +77,7 @@ onMounted(fetchRoadmap)
       v-if="loading"
       class="flex items-center justify-center py-16"
     >
-      <LoadingSpinner size="lg" />
+      <SharedLoadingSpinner size="lg" />
     </div>
 
     <div

@@ -3,8 +3,17 @@
 (function() {
   "use strict";
 
-  var scripts = document.getElementsByTagName("script");
-  var script = scripts[scripts.length - 1];
+  // Find our own script tag reliably (defer/async makes currentScript unreliable)
+  var script = document.currentScript || (function() {
+    var all = document.querySelectorAll('script[src*="widget.js"]');
+    return all.length ? all[all.length - 1] : null;
+  })();
+
+  if (!script) {
+    console.warn("[Beamback] Could not find widget script tag.");
+    return;
+  }
+
   var apiKey = script.getAttribute("data-api-key");
   var position = script.getAttribute("data-position") || "bottom-right";
   var color = script.getAttribute("data-color") || "#3A82FF";
