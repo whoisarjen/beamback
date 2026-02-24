@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     },
     public: {
       appUrl: 'http://localhost:3000',
+      widgetApiKey: '',
     },
   },
 

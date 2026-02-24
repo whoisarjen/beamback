@@ -1,13 +1,14 @@
 <script setup lang="ts">
 const route = useRoute()
+const config = useRuntimeConfig()
 const isDashboard = computed(() => route.path.startsWith('/dashboard'))
 const isWidget = computed(() => route.path.startsWith('/widget'))
-const showWidget = computed(() => !isDashboard.value && !isWidget.value)
+const showWidget = computed(() => !isDashboard.value && !isWidget.value && !!config.public.widgetApiKey)
 
 useHead({
   script: computed(() =>
     showWidget.value
-      ? [{ src: 'https://beamback.whoisarjen.com/widget.js', 'data-api-key': 'ak_l2_2KGeUWBGZmuLnUBGfq', defer: true }]
+      ? [{ src: `${config.public.appUrl}/widget.js`, 'data-api-key': config.public.widgetApiKey, defer: true }]
       : []
   ),
 })
