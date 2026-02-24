@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../server/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  avatarUrl     String?   @map("avatar_url")
+  provider      String
+  providerId    String    @map("provider_id")
+  tier          Tier      @default(FREE)
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  projects      Project[]
+  votes         Vote[]
+
+  @@unique([provider, providerId])
+  @@map("users")
+}
+
+enum Tier {
+  FREE
+  PRO
+}
+
+model Project {
+  id            String    @id @default(cuid())
+  name          String
+  slug          String    @unique
+  description   String?
+  apiKey        String    @unique @map("api_key")
+  websiteUrl    String?   @map("website_url")
+  isPublic      Boolean   @default(true) @map("is_public")
+  ownerId       String    @map("owner_id")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  widgetColor       String  @default("#3A82FF") @map("widget_color")
+  widgetPosition    String  @default("bottom-right") @map("widget_position")
+  widgetButtonText  String  @default("Feedback") @map("widget_button_text")
+
+  owner         User        @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  feedback      Feedback[]
+
+  @@index([ownerId])
+  @@index([slug])
+  @@map("projects")
+}
+
+model Feedback {
+  id            String         @id @default(cuid())
+  title         String
+  description   String?
+  status        FeedbackStatus @default(NEW)
+  authorEmail   String?        @map("author_email")
+  authorName    String?        @map("author_name")
+  ipHash        String?        @map("ip_hash")
+  adminNote     String?        @map("admin_note")
+  isRead        Boolean        @default(false) @map("is_read")
+  projectId     String         @map("project_id")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+
+  project       Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  votes         Vote[]
+
+  @@index([projectId])
+  @@index([projectId, status])
+  @@index([projectId, createdAt])
+  @@map("feedback")
+}
+
+enum FeedbackStatus {
+  NEW
+  PLANNED
+  IN_PROGRESS
+  DONE
+  CLOSED
+}
+
+model Vote {
+  id            String    @id @default(cuid())
+  feedbackId    String    @map("feedback_id")
+  userId        String?   @map("user_id")
+  ipHash        String?   @map("ip_hash")
+  createdAt     DateTime  @default(now()) @map("created_at")
+
+  feedback      Feedback  @relation(fields: [feedbackId], references: [id], onDelete: Cascade)
+  user          User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@unique([feedbackId, userId])
+  @@unique([feedbackId, ipHash])
+  @@index([feedbackId])
+  @@map("votes")
+}
+
+model Waitlist {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  source        String?
+  createdAt     DateTime  @default(now()) @map("created_at")
+
+  @@map("waitlist")
+}
