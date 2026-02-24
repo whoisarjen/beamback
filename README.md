@@ -19,7 +19,7 @@ Open-source feedback collection for your MVP. One script tag gives you a feedbac
 - **Frontend:** Nuxt 4, Vue 3, TailwindCSS v4
 - **Database:** Neon PostgreSQL via Prisma ORM
 - **Auth:** Google OAuth (nuxt-auth-utils)
-- **Rate Limiting:** Upstash Redis
+- **Rate Limiting:** PostgreSQL-based sliding window
 - **Hosting:** Vercel (serverless)
 
 ## Setup
@@ -40,7 +40,7 @@ See `.env.example` for required variables:
 - `NUXT_SESSION_PASSWORD` — Session encryption key (min 32 chars)
 - `NUXT_IP_HASH_SALT` — Salt for IP hashing
 - `NUXT_OAUTH_GOOGLE_CLIENT_ID` / `NUXT_OAUTH_GOOGLE_CLIENT_SECRET` — Google OAuth
-- `NUXT_UPSTASH_REDIS_URL` / `NUXT_UPSTASH_REDIS_TOKEN` — Upstash Redis
+
 
 ## Testing
 

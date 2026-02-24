@@ -20,8 +20,6 @@ export default defineNuxtConfig({
     databaseUrl: '',
     sessionPassword: '',
     ipHashSalt: '',
-    upstashRedisUrl: '',
-    upstashRedisToken: '',
     oauth: {
       google: {
         clientId: '',

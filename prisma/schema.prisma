@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../server/generated/prisma"
 }
 
 datasource db {
@@ -108,4 +107,16 @@ model Waitlist {
   createdAt     DateTime  @default(now()) @map("created_at")
 
   @@map("waitlist")
+}
+
+model RateLimit {
+  id            String    @id @default(cuid())
+  key           String
+  window        String
+  hits          Int       @default(1)
+  expiresAt     DateTime  @map("expires_at")
+
+  @@unique([key, window])
+  @@index([expiresAt])
+  @@map("rate_limits")
 }

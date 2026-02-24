@@ -21,9 +21,6 @@ logs
 # Vercel
 .vercel
 
-# Prisma generated client
-server/generated
-
 # Local env files
 .env
 .env.*
